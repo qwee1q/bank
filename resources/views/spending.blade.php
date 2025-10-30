@@ -26,8 +26,12 @@
                 </li>
             </ul>
         </div>
+
     </div>
 </nav>
+<div class="d-flex justify-content-end text-white container">
+    <p>Total spending:{{$all_spending}}</p>
+</div>
 <div class="container">
     <h4 class="h4 text-secondary">Operations:</h4>
 </div>

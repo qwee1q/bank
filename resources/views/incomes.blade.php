@@ -12,22 +12,26 @@
 </head>
 <body class="bg-dark">
     <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/incomes">All Incomes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/spending">All Spending</a>
-                </li>
-            </ul>
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/incomes">All Incomes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/spending">All Spending</a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
+    </nav>
+    <div class="d-flex justify-content-end text-white container">
+        <p>Total income:{{$all_incomes}}</p>
     </div>
-</nav>
     <div class="container">
         <h4 class="h4 text-secondary">Operations:</h4>
     </div>

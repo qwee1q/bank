@@ -8,8 +8,17 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function main(){
-        $bank_info = new BankModel();
-        return view('main', ['bank_info' => $bank_info->all()]);
+        $bank_info = BankModel::all();
+        $balance = 0;
+        foreach ($bank_info as $el){
+            if ($el->income_or_spending == 'spending'){
+                $balance -= $el->sum;
+            }
+            else{
+                $balance += $el->sum;
+            }
+        }
+        return view('main', ['bank_info' => $bank_info->all()], ['balance' => $balance]);
     }
 
     public function check_bank(Request $request){
@@ -30,12 +39,24 @@ class MainController extends Controller
     }
 
     public function incomes(){
-        $bank_info = new BankModel();
-        return view('incomes', ['bank_info' => $bank_info->all()]);
+        $bank_info = BankModel::all();
+        $all_incomes = 0;
+        foreach ($bank_info as $el){
+            if ($el->income_or_spending == 'income'){
+                $all_incomes += $el->sum;
+            }
+        }
+        return view('incomes', ['bank_info' => $bank_info->all()], ['all_incomes' => $all_incomes]);
     }
 
     public function spending(){
-        $bank_info = new BankModel();
-        return view('spending', ['bank_info' => $bank_info->all()]);
+        $bank_info = BankModel::all();
+        $all_spending = 0;
+        foreach ($bank_info as $el){
+            if ($el->income_or_spending == 'spending'){
+                $all_spending -= $el->sum;
+            }
+        }
+        return view('spending', ['bank_info' => $bank_info->all()], ['all_spending' => $all_spending]);
     }
 }

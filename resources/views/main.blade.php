@@ -25,6 +25,7 @@
                     </li>
                 </ul>
             </div>
+
         </div>
     </nav>
     @if($errors->any())
@@ -36,6 +37,9 @@
             </ul>
         </div>
     @endif
+    <div class="d-flex justify-content-end text-white container">
+        <p>Balance: {{$balance}}</p>
+    </div>
     <div class="container mb-3">
         <label for="form" class="form-label text-white-50">Enter New Operation</label>
         <form action="/check_bank" method="post" class="form-control bg-dark" id="form">
