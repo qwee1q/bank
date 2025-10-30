@@ -27,6 +27,15 @@
             </div>
         </div>
     </nav>
+    @if($errors->any())
+        <div class="alert alert-danger container bg-dark">
+            <ul class="list-group">
+                @foreach($errors->all() as $error)
+                    <li class="list-group-item bg-dark spending text-white-50">{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container mb-3">
         <label for="form" class="form-label text-white-50">Enter New Operation</label>
         <form action="/check_bank" method="post" class="form-control bg-dark" id="form">
@@ -79,7 +88,7 @@
                             {{$el->comment}}
                         </h3>
                     </div>
-                @else
+                @elseif($el->income_or_spending == "spending")
                     <div class="container alert spending">
                         <label for="creat-spending" class="form-label text-white-50">Date:</label>
                         <h4 class="h4 text-secondary" id="creat-spending">
@@ -97,6 +106,30 @@
                         </h4>
                         <label for="comment-spending" class="form-label text-white-50">Comment:</label>
                         <h3 class="h3 text-secondary" id="comment-spending">
+                            {{$el->comment}}
+                        </h3>
+                    </div>
+                @else
+                    <div class="container alert">
+                        <h3 class="h3 text-warning">Strange Operation</h3>
+                    </div>
+                    <div class="container alert strange">
+                        <label for="creat-strange" class="form-label text-white-50">Date:</label>
+                        <h4 class="h4 text-secondary" id="creat-strange">
+                            {{$el->created_at}}
+                        </h4>
+                        <label for="badge-strange" class="form-label text-white-50">Operation:</label>
+                        <h4 class="h4 text-secondary" id="badge-strange">
+                    <span class="badge text-bg-warning">
+                        {{$el->income_or_spending}}
+                    </span>
+                        </h4>
+                        <label for="sum-strange" class="form-label text-white-50">Sum:</label>
+                        <h4 class="h4 text-secondary" id="sum-strange">
+                            {{$el->sum}}
+                        </h4>
+                        <label for="comment-strange" class="form-label text-white-50">Comment:</label>
+                        <h3 class="h3 text-secondary" id="comment-strange">
                             {{$el->comment}}
                         </h3>
                     </div>

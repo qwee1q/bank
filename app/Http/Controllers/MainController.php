@@ -14,7 +14,7 @@ class MainController extends Controller
 
     public function check_bank(Request $request){
         $valid = $request->validate([
-            'income_or_spending' => 'required',
+            'income_or_spending' => 'required|in:income,spending',
             'sum' => 'required|numeric',
             'comment' => 'required',
         ]);
@@ -24,6 +24,7 @@ class MainController extends Controller
         $bank_info -> sum = $request->input('sum');
         $bank_info -> comment = $request->input('comment');
         $bank_info -> save();
+
 
         return redirect()->route('main');
     }
