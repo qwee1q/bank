@@ -98,25 +98,27 @@
         <div class="accordion-body">
             @foreach($bank_info as $el)
                 @if($el->income_or_spending == "income")
-                    <div class="alert container income" role="alert">
-                        <label for="creat-income" class="form-label text-white-50">Date:</label>
+                    <div class="alert container income " role="alert">
+                        <label for="creat-income" class="form-label text-white-50 ">Date:</label>
                         <h4 class="h4 text-secondary" id="creat-income">
                             {{$el->created_at}}
                         </h4>
-                        <label for="badge-income" class="form-label text-white-50">Operation:</label>
-                        <h4 class="h4 text-secondary" id="badge-income">
-                    <span class="badge text-bg-success">
-                        {{$el->income_or_spending}}
-                    </span>
-                        </h4>
-                        <label for="sum-income" class="form-label text-white-50">Sum:</label>
-                        <h4 class="h4 text-secondary" id="sum-income">
-                            {{$el->sum}}
-                        </h4>
-                        <label for="comment-income" class="form-label text-white-50">Comment:</label>
-                        <h3 class="h3 text-secondary" id="comment-income">
-                            {{$el->comment}}
-                        </h3>
+                        <div class="details">
+                            <label for="badge-income" class="form-label text-white-50">Operation:</label>
+                            <h4 class="h4 text-secondary" id="badge-income">
+                            <span class="badge text-bg-success">
+                                {{$el->income_or_spending}}
+                            </span>
+                            </h4>
+                            <label for="sum-income" class="form-label text-white-50">Sum:</label>
+                            <h4 class="h4 text-secondary" id="sum-income">
+                                {{$el->sum}}
+                            </h4>
+                            <label for="comment-income" class="form-label text-white-50">Comment:</label>
+                            <h3 class="h3 text-secondary" id="comment-income">
+                                {{$el->comment}}
+                            </h3>
+                        </div>
                     </div>
                 @elseif($el->income_or_spending == "spending")
                     <div class="container alert spending">
@@ -124,20 +126,22 @@
                         <h4 class="h4 text-secondary" id="creat-spending">
                             {{$el->created_at}}
                         </h4>
-                        <label for="badge-spending" class="form-label text-white-50">Operation:</label>
-                        <h4 class="h4 text-secondary" id="badge-spending">
-                    <span class="badge text-bg-danger">
-                        {{$el->income_or_spending}}
-                    </span>
-                        </h4>
-                        <label for="sum-spending" class="form-label text-white-50">Sum:</label>
-                        <h4 class="h4 text-secondary" id="sum-spending">
-                            {{$el->sum}}
-                        </h4>
-                        <label for="comment-spending" class="form-label text-white-50">Comment:</label>
-                        <h3 class="h3 text-secondary" id="comment-spending">
-                            {{$el->comment}}
-                        </h3>
+                        <div class="details">
+                            <label for="badge-spending" class="form-label text-white-50">Operation:</label>
+                            <h4 class="h4 text-secondary" id="badge-spending">
+                        <span class="badge text-bg-danger">
+                            {{$el->income_or_spending}}
+                        </span>
+                            </h4>
+                            <label for="sum-spending" class="form-label text-white-50">Sum:</label>
+                            <h4 class="h4 text-secondary" id="sum-spending">
+                                {{$el->sum}}
+                            </h4>
+                            <label for="comment-spending" class="form-label text-white-50">Comment:</label>
+                            <h3 class="h3 text-secondary" id="comment-spending">
+                                {{$el->comment}}
+                            </h3>
+                        </div>
                     </div>
                 @else
                     <div class="container alert">

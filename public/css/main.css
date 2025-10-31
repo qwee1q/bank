@@ -17,3 +17,15 @@
 .red {
     color: #ff0000;
 }
+
+.alert {
+    max-height: 83px;
+    overflow: hidden;
+    transition: max-height 1.6s ease,padding 1.6s ease;
+    cursor: pointer;
+}
+
+.alert:hover{
+    max-height: 500px;
+    padding: 10px 15px;
+}
