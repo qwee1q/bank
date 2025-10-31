@@ -46,7 +46,7 @@
 </nav>
 <div class="d-flex justify-content-end text-white container">
     <p>Total spending:</p>
-    <p class="text-danger">{{$all_spending}}</p>
+    <p class="red">{{$all_spending}}</p>
 </div>
 <div class="d-flex justify-content-end text-white container">
     <form class="form-control bg-dark" action="{{ route('spending_date') }}" method="get">

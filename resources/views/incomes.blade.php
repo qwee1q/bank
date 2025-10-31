@@ -46,7 +46,7 @@
     </nav>
     <div class="d-flex justify-content-end text-white container">
         <p>Total income:</p>
-        <p class="text-success">{{$all_incomes}}</p>
+        <p class="green">{{$all_incomes}}</p>
     </div>
     <div class="d-flex justify-content-end text-white container">
         <form class="form-control bg-dark" action="{{ route('incomes_date') }}" method="get">
