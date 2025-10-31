@@ -1,3 +1,21 @@
+@php
+    use App\Models\BankModel;
+    $date = request('date');
+    $bank_info = BankModel::query();
+    if ($date) {
+        $bank_info = $bank_info->whereDate('created_at', $date);
+    }
+    $bank_info = $bank_info->get();
+    $balance = 0;
+    foreach ($bank_info as $el){
+        if ($el->income_or_spending == 'spending'){
+            $balance -= $el->sum;
+           }
+        else{
+               $balance += $el->sum;
+        }
+    }
+@endphp
 <!doctype html>
 <html lang="en">
 <head>
@@ -57,6 +75,13 @@
             <button type="submit" class="btn btn-success">Send</button>
         </form>
     </div>
+    <div class="d-flex justify-content-end text-white container">
+        <form class="form-control bg-dark" action="{{ route('main_date') }}" method="get">
+            @csrf
+            <label for="date" class="form-label text-white-50">Choose Date:</label>
+            <input type="date" id="date" name="date" class="form-control bg-secondary" onchange="this.form.submit()" value="{{ request('date') }}">
+        </form>
+    </div>
     <div class="accordion container bg-dark" id="accordionExample">
         <label for="accordion" class="form-label text-white-50">Operations:</label>
         <div class="accordion-item text-black" id="accordion">
@@ -68,6 +93,7 @@
         </div>
     </div>
     <br>
+
     <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
         <div class="accordion-body">
             @foreach($bank_info as $el)

@@ -1,3 +1,18 @@
+@php
+    use App\Models\BankModel;
+    $date = request('date');
+    $bank_info = BankModel::query();
+    if ($date) {
+        $bank_info = $bank_info->whereDate('created_at', $date);
+    }
+    $bank_info = $bank_info->get();
+    $all_incomes = 0;
+    foreach ($bank_info as $el){
+        if ($el->income_or_spending == 'income'){
+            $all_incomes += $el->sum;
+        }
+    }
+@endphp
 <!doctype html>
 <html lang="en">
 <head>
@@ -30,11 +45,21 @@
         </div>
     </nav>
     <div class="d-flex justify-content-end text-white container">
-        <p>Total income:{{$all_incomes}}</p>
+        <p>Total income:</p>
+        <p class="text-success">{{$all_incomes}}</p>
+    </div>
+    <div class="d-flex justify-content-end text-white container">
+        <form class="form-control bg-dark" action="{{ route('incomes_date') }}" method="get">
+            @csrf
+            <label for="date" class="form-label text-white-50">Choose Date:</label>
+            <input type="date" id="date" name="date" class="form-control bg-secondary" onchange="this.form.submit()" value="{{ request('date') }}">
+        </form>
     </div>
     <div class="container">
         <h4 class="h4 text-secondary">Operations:</h4>
     </div>
+
+
     @foreach($bank_info as $el)
         @if($el->income_or_spending == "income")
             <div class="alert container income" role="alert">
@@ -59,5 +84,8 @@
             </div>
         @endif
     @endforeach
+
+
+
 </body>
 </html>
